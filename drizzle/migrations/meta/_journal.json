@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791217638713,
+      "tag": "0000_trainer_photos_leads_roles",
+      "breakpoints": true
+    }
+  ]
 }
