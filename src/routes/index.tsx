@@ -1,24 +1,29 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Award, Dumbbell, GraduationCap, Heart, Instagram, Laptop, MessageCircle, PersonStanding, Sparkles, Target } from "lucide-react";
+import { BrandLogo } from "@/components/brand-logo";
+import { QualificationForm } from "@/components/qualification-form";
+import { EvolutionGallery } from "@/components/evolution-gallery";
+import { Button } from "@/components/ui/button";
+import portrait from "@/assets/roberta-portrait.asset.json";
 
 // No head() here: the home route inherits title/description/og/twitter from
 // __root.tsx, and ships no og:image so serve-time hosting can inject the
 // project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
+export const Route = createFileRoute("/")({ head:()=>({meta:[{title:"Roberta Sabrina | Personal Trainer em João Pessoa"},{name:"description",content:"Treino personalizado, musculação, funcional e consultoria on-line ou presencial. Faça sua avaliação com Roberta Sabrina."},{property:"og:title",content:"Roberta Sabrina | Personal Trainer"},{property:"og:description",content:"Cada treino é um passo mais perto da sua melhor versão."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}), component: Index });
 
 // IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  const services=[{icon:Target,title:"Atendimento personalizado",text:"Treino criado para sua rotina e seus objetivos."},{icon:Dumbbell,title:"Musculação",text:"Força, definição e evolução com técnica e segurança."},{icon:PersonStanding,title:"Funcional",text:"Mais mobilidade, condicionamento e disposição."},{icon:Laptop,title:"Consultoria on-line e presencial",text:"Acompanhamento próximo, onde você estiver."}];
+  return <div className="min-h-screen overflow-hidden bg-background text-foreground">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl"><div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-5"><a href="#inicio"><BrandLogo/></a><nav className="hidden items-center gap-7 text-sm font-semibold md:flex"><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#evolucao">Evolução</a><a href="#avaliacao">Avaliação</a></nav><Button asChild variant="premium" size="sm"><a href="#avaliacao">Começar agora</a></Button></div></header>
+    <main>
+      <section id="inicio" className="relative flex min-h-[92svh] items-center pt-24"><div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,color-mix(in_oklab,var(--brand-pink)_17%,transparent),transparent_35%),radial-gradient(circle_at_20%_50%,color-mix(in_oklab,var(--primary)_35%,transparent),transparent_42%)]"/><div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 pb-16 pt-12 md:grid-cols-[1.1fr_.9fr]"><div><div className="mb-8"><BrandLogo/></div><p className="mb-4 text-sm font-bold uppercase text-brand-pink">Transformando vidas através do movimento</p><h1 className="max-w-3xl font-display text-4xl font-black leading-[1.08] sm:text-5xl lg:text-7xl">Cada treino é um passo mais perto da sua <span className="text-brand-pink">melhor versão</span></h1><p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">Treino feito para você, com estratégia, acompanhamento e motivação para transformar seus objetivos em resultados.</p><Button asChild variant="premium" size="lg" className="mt-8 h-14 text-base"><a href="#avaliacao">Quero minha avaliação <ArrowRight/></a></Button></div><div className="relative mx-auto w-full max-w-md"><div className="absolute inset-8 rounded-full bg-brand-pink/20 blur-3xl"/><img src={portrait.url} alt="Personal trainer Roberta Sabrina" className="relative aspect-[4/5] w-full rounded-[2rem] border border-border object-cover object-top shadow-glow"/><div className="absolute -bottom-5 left-4 rounded-xl border border-border bg-card/95 px-4 py-3 shadow-xl"><strong className="block text-sm">CREF 013477-G/PB</strong><span className="text-xs text-muted-foreground">Profissional habilitada</span></div></div></div></section>
+      <section id="sobre" className="py-24"><div className="reveal mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[.9fr_1.1fr]"><div><p className="text-sm font-bold uppercase text-brand-pink">Quem sou eu</p><h2 className="mt-3 font-display text-3xl font-black sm:text-5xl">Prazer, sou Roberta Sabrina.</h2><p className="mt-5 leading-relaxed text-muted-foreground">Tenho 23 anos, sou Bacharel em Educação Física e uma treinadora dedicada a transformar vidas através do movimento. Sou apaixonada por esporte, evolução e novos desafios.</p><div className="mt-6 inline-flex items-center gap-2 rounded-full border border-brand-pink/40 bg-brand-pink/10 px-4 py-2 font-bold text-brand-pink"><Award className="size-5"/>CREF 013477-G/PB</div></div><div className="grid gap-3">{[[GraduationCap,"Bacharel em Educação Física"],[Heart,"Apaixonada por esporte e desafios"],[Sparkles,"Treinos focados em evolução real"]].map(([Icon,text])=><div className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5" key={String(text)}><div className="flex size-11 items-center justify-center rounded-xl bg-primary/20"><Icon className="text-brand-pink"/></div><strong>{String(text)}</strong></div>)}</div></div></section>
+      <section id="servicos" className="bg-secondary/35 py-24"><div className="mx-auto max-w-6xl px-5"><div className="reveal max-w-2xl"><p className="text-sm font-bold uppercase text-brand-pink">Serviços</p><h2 className="mt-3 font-display text-3xl font-black sm:text-5xl">Seu objetivo. Seu ritmo. Seu treino.</h2></div><div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{services.map(({icon:Icon,title,text})=><article key={title} className="reveal rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-glow"><Icon className="size-9 text-brand-pink"/><h3 className="mt-6 font-display text-lg font-extrabold">{title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p></article>)}</div></div></section>
+      <section id="evolucao" className="py-24"><div className="mx-auto max-w-6xl px-5"><div className="reveal mb-10"><p className="text-sm font-bold uppercase text-brand-pink">Evolução das alunas</p><h2 className="mt-3 font-display text-3xl font-black sm:text-5xl">Resultados que inspiram.</h2></div><EvolutionGallery/></div></section>
+      <section id="avaliacao" className="bg-secondary/35 py-24"><div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[.8fr_1.2fr]"><div className="reveal"><p className="text-sm font-bold uppercase text-brand-pink">Avaliação gratuita</p><h2 className="mt-3 font-display text-3xl font-black sm:text-5xl">Pronta para começar?</h2><p className="mt-5 leading-relaxed text-muted-foreground">Conte um pouco sobre você. Ao finalizar, vamos continuar nossa conversa pelo WhatsApp.</p><p className="mt-6 font-bold">Vamos juntas alcançar seus objetivos!</p></div><div className="reveal rounded-2xl border border-border bg-card p-5 shadow-glow sm:p-8"><QualificationForm/></div></div></section>
+    </main>
+    <footer className="border-t border-border py-12"><div className="mx-auto flex max-w-6xl flex-col gap-7 px-5 sm:flex-row sm:items-center sm:justify-between"><div><BrandLogo/><p className="mt-3 text-xs text-muted-foreground">CREF 013477-G/PB</p></div><a href="https://instagram.com/robertasabrinapersonaltrainer" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold"><Instagram className="text-brand-pink"/>@robertasabrinapersonaltrainer</a><Link to="/admin/login" className="text-xs text-muted-foreground hover:text-foreground">Área da treinadora</Link></div></footer>
+    <a href="https://wa.me/5583981995502" target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp" className="fixed bottom-5 right-5 z-40 flex size-14 items-center justify-center rounded-full bg-brand-pink text-primary-foreground shadow-glow transition hover:scale-105"><MessageCircle/></a>
+  </div>;
 }
