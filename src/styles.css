@@ -151,6 +151,8 @@
 }
 
 @utility shadow-glow { box-shadow: var(--shadow-glow); }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 @media (prefers-reduced-motion: no-preference) {
   .reveal { animation: reveal 0.7s ease both; animation-timeline: view(); animation-range: entry 5% cover 28%; }

@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep public content and lead submission client-side under RLS; reserve the authenticated admin surface for role-checked photo and lead management, because database policies are the security boundary.
+- Validate qualification data with the shared schema in the browser and the public server function; use a publishable client for lead insertion so anonymous submission stays RLS-scoped.
