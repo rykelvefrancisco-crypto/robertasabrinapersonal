@@ -8,6 +8,13 @@
       "when": 1791217638713,
       "tag": "0000_trainer_photos_leads_roles",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791217823270,
+      "tag": "0001_restrict_role_helper_execution",
+      "breakpoints": true
     }
   ]
 }
