@@ -1,0 +1,12 @@
+import { useEffect, useState } from "react";
+import { ImageIcon, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
+
+type Photo = { id: string; path: string; url: string; caption: string };
+export function EvolutionGallery() {
+  const [photos,setPhotos]=useState<Photo[]>([]); const [urls,setUrls]=useState<Record<string,string>>({}); const [open,setOpen]=useState<Photo|null>(null);
+  useEffect(()=>{let active=true; const load=async()=>{const {data}=await supabase.from("evolution_photos").select("id,path,url,caption").order("created_at",{ascending:false});if(!active||!data)return;setPhotos(data);for(const p of data){const {data:blob}=await supabase.storage.from("evolucao").download(p.path);if(blob&&active)setUrls(x=>({...x,[p.id]:URL.createObjectURL(blob)}));}};load();const channel=supabase.channel("public-evolution").on("postgres_changes",{event:"*",schema:"public",table:"evolution_photos"},load).subscribe();return()=>{active=false;supabase.removeChannel(channel);Object.values(urls).forEach(URL.revokeObjectURL);};},[]);
+  if(!photos.length)return <div className="grid gap-4 sm:grid-cols-3">{[1,2,3].map(n=><div key={n} className="flex aspect-[4/5] flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-card/40 p-6 text-center"><ImageIcon className="mb-4 size-9 text-brand-pink"/><p className="font-semibold">Em breve: resultados das alunas</p></div>)}</div>;
+  return <><div className="grid grid-cols-2 gap-3 md:grid-cols-3">{photos.map(p=><button key={p.id} onClick={()=>setOpen(p)} className="group overflow-hidden rounded-2xl border border-border bg-card text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><img src={urls[p.id]} alt={p.caption||"Evolução de aluna da Roberta Sabrina"} className="aspect-[4/5] w-full object-cover transition duration-500 group-hover:scale-105"/>{p.caption&&<p className="p-3 text-sm font-semibold">{p.caption}</p>}</button>)}</div>{open&&<div role="dialog" aria-modal="true" className="fixed inset-0 z-[80] flex items-center justify-center bg-background/95 p-5" onClick={()=>setOpen(null)}><Button variant="outline" size="icon" className="absolute right-5 top-5" aria-label="Fechar"><X/></Button><img src={urls[open.id]} alt={open.caption||"Resultado de aluna"} className="max-h-[85vh] max-w-full rounded-2xl object-contain"/></div>}</>;
+}
