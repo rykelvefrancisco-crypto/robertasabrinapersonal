@@ -4,8 +4,7 @@ import { BrandLogo } from "@/components/brand-logo";
 import { QualificationForm } from "@/components/qualification-form";
 import { EvolutionGallery } from "@/components/evolution-gallery";
 import { Button } from "@/components/ui/button";
-import portrait from "@/assets/roberta-hero.png.asset.json";
-
+const portrait = "/roberta-hero.png";
 // No head() here: the home route inherits title/description/og/twitter from
 // __root.tsx, and ships no og:image so serve-time hosting can inject the
 // project's social preview (explicit og:image or latest screenshot).
