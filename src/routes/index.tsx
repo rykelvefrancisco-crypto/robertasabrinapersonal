@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, Dumbbell, GraduationCap, Heart, Instagram, Laptop, MessageCircle, PersonStanding, Sparkles, Target } from "lucide-react";
+import { ArrowRight, Award, Dumbbell, GraduationCap, Heart, Instagram, Laptop, Mail, MessageCircle, PersonStanding, Sparkles, Target } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { QualificationForm } from "@/components/qualification-form";
 import { EvolutionGallery } from "@/components/evolution-gallery";
 import { Button } from "@/components/ui/button";
-import portrait from "@/assets/roberta-portrait.asset.json";
+import portrait from "@/assets/roberta-hero.png.asset.json";
 
 // No head() here: the home route inherits title/description/og/twitter from
 // __root.tsx, and ships no og:image so serve-time hosting can inject the
