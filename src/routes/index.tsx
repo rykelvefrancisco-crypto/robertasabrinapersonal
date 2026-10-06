@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, Dumbbell, GraduationCap, Heart, Instagram, Laptop, MessageCircle, PersonStanding, Sparkles, Target } from "lucide-react";
+import { ArrowRight, Award, Dumbbell, GraduationCap, Heart, Instagram, Laptop, Mail, MessageCircle, PersonStanding, Sparkles, Target } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { QualificationForm } from "@/components/qualification-form";
 import { EvolutionGallery } from "@/components/evolution-gallery";
 import { Button } from "@/components/ui/button";
-import portrait from "@/assets/roberta-portrait.asset.json";
+import portrait from "@/assets/roberta-hero.png.asset.json";
 
 // No head() here: the home route inherits title/description/og/twitter from
 // __root.tsx, and ships no og:image so serve-time hosting can inject the
@@ -23,7 +23,7 @@ function Index() {
       <section id="evolucao" className="py-24"><div className="mx-auto max-w-6xl px-5"><div className="reveal mb-10"><p className="text-sm font-bold uppercase text-brand-pink">Evolução das alunas</p><h2 className="mt-3 font-display text-3xl font-black sm:text-5xl">Resultados que inspiram.</h2></div><EvolutionGallery/></div></section>
       <section id="avaliacao" className="bg-secondary/35 py-24"><div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[.8fr_1.2fr]"><div className="reveal"><p className="text-sm font-bold uppercase text-brand-pink">Sua avaliação</p><h2 className="mt-3 font-display text-3xl font-black sm:text-5xl">Pronta para começar?</h2><p className="mt-5 leading-relaxed text-muted-foreground">Conte um pouco sobre você. Ao finalizar, vamos continuar nossa conversa pelo WhatsApp.</p><p className="mt-6 font-bold">Vamos juntas alcançar seus objetivos!</p></div><div className="reveal rounded-2xl border border-border bg-card p-5 shadow-glow sm:p-8"><QualificationForm/></div></div></section>
     </main>
-    <footer className="border-t border-border py-12"><div className="mx-auto flex max-w-6xl flex-col gap-7 px-5 sm:flex-row sm:items-center sm:justify-between"><div><BrandLogo/><p className="mt-3 text-xs text-muted-foreground">CREF 013477-G/PB</p></div><a href="https://instagram.com/robertasabrinapersonaltrainer" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold"><Instagram className="text-brand-pink"/>@robertasabrinapersonaltrainer</a><Link to="/admin/login" className="text-xs text-muted-foreground hover:text-foreground">Área da treinadora</Link></div></footer>
+    <footer className="border-t border-border py-12"><div className="mx-auto flex max-w-6xl flex-col gap-7 px-5 sm:flex-row sm:items-center sm:justify-between"><div><BrandLogo/><p className="mt-3 text-xs text-muted-foreground">CREF 013477-G/PB</p></div><div className="flex flex-col gap-3"><a href="https://instagram.com/robertasabrinapersonaltrainer" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold"><Instagram className="text-brand-pink"/>@robertasabrinapersonaltrainer</a><a href="mailto:sabrinnaroberta307@gmail.com" className="inline-flex items-center gap-2 text-sm font-semibold"><Mail className="text-brand-pink"/>sabrinnaroberta307@gmail.com</a></div><Link to="/admin/login" className="text-xs text-muted-foreground hover:text-foreground">Área da treinadora</Link></div></footer>
     <a href="https://wa.me/5583981995502" target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp" className="fixed bottom-5 right-5 z-40 flex size-14 items-center justify-center rounded-full bg-brand-pink text-primary-foreground shadow-glow transition hover:scale-105"><MessageCircle/></a>
   </div>;
 }
