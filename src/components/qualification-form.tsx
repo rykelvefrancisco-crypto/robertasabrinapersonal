@@ -17,9 +17,13 @@ export function QualificationForm() {
   const { register, setValue, watch, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({ resolver: zodResolver(schema) });
   const selected = watch("experience");
   const submit = async (data: FormData) => {
-    try { await submitQualification({ data }); } catch { toast.error("Não foi possível enviar. Tente novamente."); return; }
-    toast.success("Avaliação enviada! Abrindo o WhatsApp…");
-    window.location.href = qualificationWhatsApp(data);
+    try {
+      const url = qualificationWhatsApp(data);
+      toast.success("Avaliando! Abrindo o WhatsApp...");
+      window.location.href = url;
+    } catch (error) {
+      toast.error("Não foi possível abrir o WhatsApp. Tente novamente.");
+    }
   };
   const fieldClass = "h-12 rounded-xl border-border bg-secondary/70 text-foreground placeholder:text-muted-foreground focus-visible:ring-brand-pink";
   return <form onSubmit={handleSubmit(submit)} className="grid gap-5" noValidate>
